@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safe Watts House Challenge | Grade 11 General Science</title>
+  <style>
+    :root{
+      --bg:#071827;
+      --panel:#0f2740;
+      --text:#f5f7fb;
+      --muted:#b8c7d9;
+      --yellow:#ffd84d;
+      --yellow2:#ffb703;
+      --blue:#38bdf8;
+      --green:#5eead4;
+      --red:#fb7185;
+      --orange:#fb923c;
+      --line:rgba(255,255,255,.14);
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.22), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255,216,77,.18), transparent 28%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter: blur(14px);
+      background:rgba(7,24,39,.78);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:#101820;
+      background:linear-gradient(135deg,var(--yellow),var(--blue));
+      box-shadow:0 10px 25px rgba(56,189,248,.2);
+      font-size:25px;
+    }
+
+    .navlinks{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .navlinks a, button, .buttonlike{
+      border:0;
+      border-radius:999px;
+      padding:10px 14px;
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      font-weight:800;
+      transition:.18s ease;
+      font-size:14px;
+    }
+
+    .navlinks a:hover, button:hover, .buttonlike:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.14);
+    }
+
+    main{
+      max-width:1180px;
+      margin:auto;
+      padding:34px 20px 60px;
+    }
+
+    .hero{
+      min-height:72vh;
+      display:grid;
+      align-items:center;
+      grid-template-columns: 1.04fr .96fr;
+      gap:28px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#0b1724;
+      background:var(--yellow);
+      border-radius:999px;
+      padding:9px 14px;
+      font-weight:950;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(42px, 7vw, 84px);
+      line-height:.95;
+      margin:0 0 18px;
+      letter-spacing:-2px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:clamp(18px,2.2vw,24px);
+      line-height:1.45;
+      margin:0 0 26px;
+      max-width:680px;
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .primary{
+      background:linear-gradient(135deg,var(--yellow),var(--yellow2));
+      color:#111827;
+      box-shadow:0 12px 28px rgba(255,216,77,.2);
+    }
+
+    .secondary{
+      background:rgba(56,189,248,.14);
+      border:1px solid rgba(56,189,248,.35);
+    }
+
+    .hero-card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.045));
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      min-height:500px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .mini-house{
+      position:relative;
+      width:100%;
+      aspect-ratio:1/1;
+      max-width:520px;
+      margin:auto;
+      display:grid;
+      place-items:center;
+    }
+
+    .house{
+      position:relative;
+      width:82%;
+      height:68%;
+      margin-top:18%;
+      border:4px solid rgba(255,255,255,.75);
+      border-radius:18px;
+      background:rgba(15,39,64,.92);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:1fr 1fr;
+      overflow:hidden;
+    }
+
+    .roof{
+      position:absolute;
+      top:5%;
+      width:72%;
+      height:72%;
+      transform:rotate(45deg);
+      border-left:4px solid rgba(255,255,255,.75);
+      border-top:4px solid rgba(255,255,255,.75);
+      border-radius:14px;
+    }
+
+    .room{
+      border:1px solid rgba(255,255,255,.16);
+      padding:14px;
+      position:relative;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .wire{
+      position:absolute;
+      height:5px;
+      background:var(--blue);
+      border-radius:99px;
+      box-shadow:0 0 14px rgba(56,189,248,.75);
+    }
+
+    .wire.w1{width:42%; left:16%; top:58%; transform:rotate(12deg)}
+    .wire.w2{width:35%; right:12%; bottom:22%; transform:rotate(-18deg); background:var(--yellow)}
+    .wire.w3{width:28%; left:35%; bottom:45%; transform:rotate(80deg); background:var(--red)}
+
+    .icon-bubble{
+      position:absolute;
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:30px;
+      background:rgba(255,255,255,.12);
+      border:1px solid var(--line);
+      box-shadow:0 18px 40px rgba(0,0,0,.25);
+    }
+
+    .b1{left:8%; top:28%}
+    .b2{right:4%; top:38%}
+    .b3{left:18%; bottom:7%}
+    .b4{right:18%; bottom:10%}
+
+    section{
+      margin:42px 0;
+      scroll-margin-top:90px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    h2{
+      font-size:clamp(30px,4vw,48px);
+      margin:0;
+      letter-spacing:-1px;
+    }
+
+    h3{margin-top:0}
+
+    .section-title p, .tiny{
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    .section-title p{
+      margin:8px 0 0;
+      font-size:17px;
+      max-width:760px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+    }
+
+    .panel{
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+    }
+
+    .span-4{grid-column:span 4}
+    .span-5{grid-column:span 5}
+    .span-6{grid-column:span 6}
+    .span-7{grid-column:span 7}
+    .span-8{grid-column:span 8}
+    .span-12{grid-column:span 12}
+
+    .big-question{
+      font-size:clamp(26px,4vw,48px);
+      line-height:1.05;
+      font-weight:950;
+      letter-spacing:-1.2px;
+      margin:0;
+    }
+
+    .challenge-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      background:linear-gradient(145deg,rgba(255,216,77,.16),rgba(56,189,248,.12));
+      border:1px solid rgba(255,216,77,.28);
+    }
+
+    .challenge-card h3{
+      font-size:30px;
+      line-height:1.05;
+      margin:0 0 8px;
+    }
+
+    .challenge-card p{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.35;
+      margin:0;
+    }
+
+    .tokens{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:16px 0 8px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,216,77,.12);
+      border:1px solid rgba(255,216,77,.3);
+    }
+
+    .token-number{
+      font-size:42px;
+      font-weight:950;
+      color:var(--yellow);
+      line-height:1;
+    }
+
+    .meter{
+      height:14px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.13);
+      border:1px solid var(--line);
+    }
+
+    .meter > div{
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,var(--green),var(--yellow),var(--red));
+      transition:.2s ease;
+    }
+
+    .cart-summary{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .summary-box{
+      border-radius:16px;
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--line);
+      padding:13px;
+    }
+
+    .summary-box strong{
+      display:block;
+      font-size:22px;
+      color:var(--yellow);
+      margin-top:2px;
+    }
+
+    .warning{
+      color:#111827;
+      background:var(--red);
+      border-radius:16px;
+      padding:12px 14px;
+      font-weight:900;
+      display:none;
+      margin-top:12px;
+    }
+
+    .success{
+      color:#07251e;
+      background:var(--green);
+      border-radius:16px;
+      padding:12px 14px;
+      font-weight:900;
+      display:none;
+      margin-top:12px;
+    }
+
+    .appliance-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .appliance{
+      min-height:172px;
+      border-radius:18px;
+      background:rgba(255,255,255,.075);
+      border:1px solid var(--line);
+      padding:14px;
+      transition:.16s ease;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .appliance.active{
+      border-color:var(--yellow);
+      box-shadow:0 0 0 3px rgba(255,216,77,.13);
+      background:rgba(255,216,77,.1);
+    }
+
+    .appliance .emoji{
+      font-size:32px;
+      line-height:1;
+    }
+
+    .appliance strong{
+      display:block;
+      font-size:15px;
+      line-height:1.2;
+    }
+
+    .cost{
+      display:inline-flex;
+      align-items:center;
+      width:max-content;
+      color:#101820;
+      background:var(--yellow);
+      border-radius:999px;
+      padding:5px 9px;
+      font-weight:950;
+      font-size:13px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      font-weight:900;
+      background:rgba(255,255,255,.1);
+      border:1px solid var(--line);
+      color:var(--muted);
+      width:max-content;
+    }
+
+    .qty-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-top:auto;
+    }
+
+    .qty-btn{
+      width:38px;
+      height:38px;
+      padding:0;
+      border-radius:12px;
+      font-size:22px;
+      display:grid;
+      place-items:center;
+    }
+
+    .qty{
+      min-width:40px;
+      text-align:center;
+      font-size:24px;
+      font-weight:950;
+      color:var(--yellow);
+    }
+
+    .cart-list{
+      margin-top:12px;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+
+    .cart-list li{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      padding:9px 11px;
+      color:var(--muted);
+    }
+
+    .card-set{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .scenario{
+      border-radius:20px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:310px;
+      position:relative;
+    }
+
+    .scenario .scene-emoji{
+      font-size:45px;
+      line-height:1;
+    }
+
+    .scenario h3{
+      margin:0;
+      font-size:20px;
+      line-height:1.15;
+    }
+
+    .scenario p{
+      color:var(--muted);
+      margin:0;
+      line-height:1.35;
+      font-size:15px;
+    }
+
+    .choices{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:auto;
+    }
+
+    .choice{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    .choice.selected{
+      background:var(--yellow);
+      color:#111827;
+      border-color:transparent;
+    }
+
+    .feedback{
+      display:none;
+      border-radius:14px;
+      padding:11px 12px;
+      font-weight:700;
+      line-height:1.35;
+      font-size:14px;
+      color:#0b1724;
+      background:var(--green);
+    }
+
+    .feedback.miss{
+      background:var(--orange);
+    }
+
+    input, select, textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      border-radius:14px;
+      padding:12px 13px;
+      font:inherit;
+      outline:none;
+      caret-color:var(--yellow);
+    }
+
+    input, textarea{
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      border-color:var(--line);
+    }
+
+    select{
+      background:linear-gradient(135deg, rgba(15,39,64,.96), rgba(7,24,39,.96));
+      color:var(--text);
+      border-color:rgba(56,189,248,.35);
+    }
+
+    select option{
+      background:#0f2740;
+      color:#f5f7fb;
+    }
+
+    input::placeholder, textarea::placeholder{
+      color:rgba(245,247,251,.58);
+    }
+
+    textarea{
+      min-height:120px;
+      resize:vertical;
+      margin-top:12px;
+    }
+
+    label{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:7px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .full{grid-column:1/-1}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:16px;
+      margin-top:16px;
+      font-size:14px;
+    }
+
+    th,td{
+      border:1px solid rgba(255,255,255,.14);
+      padding:12px;
+      vertical-align:top;
+      text-align:left;
+    }
+
+    th{
+      background:rgba(255,216,77,.15);
+      color:var(--yellow);
+    }
+
+    .print-area{
+      background:rgba(255,255,255,.04);
+      border:1px dashed rgba(255,255,255,.3);
+      border-radius:18px;
+      padding:16px;
+      margin-top:16px;
+      overflow-x:auto;
+    }
+
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:18px 0;
+    }
+
+    .teacher-shell{
+      margin-top:28px;
+      opacity:.45;
+      transition:.2s ease;
+    }
+
+    .teacher-shell:hover{
+      opacity:1;
+    }
+
+    .teacher-mini-toggle{
+      font-size:12px;
+      padding:7px 10px;
+      background:rgba(255,255,255,.045);
+      color:rgba(245,247,251,.6);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:none;
+    }
+
+    .teacher-panel{
+      display:none;
+      margin-top:12px;
+    }
+
+    .teacher-panel.open{
+      display:block;
+    }
+
+    .teacher-panel h2{
+      font-size:24px;
+      letter-spacing:0;
+    }
+
+    .teacher-lock{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      margin-top:10px;
+    }
+
+    .teacher-lock input{
+      max-width:260px;
+    }
+
+    .teacher-dashboard{
+      display:none;
+      margin-top:16px;
+    }
+
+    .save-status{
+      display:none;
+      margin-top:12px;
+      border-radius:16px;
+      padding:12px 14px;
+      font-weight:900;
+      color:#07251e;
+      background:var(--green);
+    }
+
+    .danger-btn{
+      background:rgba(251,113,133,.16);
+      border:1px solid rgba(251,113,133,.35);
+    }
+
+    .submission-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      margin:12px 0;
+      background:rgba(255,255,255,.06);
+      overflow-x:auto;
+    }
+
+    .submission-card h4{
+      margin:0 0 8px;
+      color:var(--yellow);
+      font-size:18px;
+    }
+
+    .submission-meta{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    .answer-block{
+      border-left:4px solid var(--yellow);
+      padding-left:10px;
+      margin:8px 0;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .instruction-list{
+      margin:10px 0 0;
+      padding-left:20px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    .footer-note{
+      color:var(--muted);
+      text-align:center;
+      margin-top:36px;
+    }
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; min-height:auto}
+      .appliance-grid{grid-template-columns:repeat(2,1fr)}
+      .card-set{grid-template-columns:1fr}
+      .span-4,.span-5,.span-6,.span-7,.span-8{grid-column:span 12}
+      .form-grid{grid-template-columns:1fr}
+      .nav{align-items:flex-start; flex-direction:column}
+      .challenge-card{align-items:flex-start; flex-direction:column}
+      .cart-summary{grid-template-columns:1fr}
+    }
+
+    @media print{
+      header, .hero, .no-print, button, .navlinks{display:none!important}
+      body{background:#fff;color:#111}
+      main{padding:0}
+      .panel,.print-area{box-shadow:none;background:#fff;color:#111;border-color:#ccc}
+      th{color:#111;background:#eee}
+      td,th{border-color:#bbb}
+      .section-title p, .tiny{color:#333}
+      textarea,input,select{color:#111;background:#fff;border-color:#bbb}
+      section{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">⚡</div>
+        <div>
+          <div>Safe Watts House Challenge</div>
+          <div class="tiny">Grade 11 General Science • Pair Activity</div>
+        </div>
+      </div>
+      <nav class="navlinks">
+        <a href="#steps">Mission</a>
+        <a href="#provocation">Provocation</a>
+        <a href="#engage">Engage</a>
+        <a href="#explore">Explore</a>
+        <a href="#output">Output</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <div class="eyebrow">⚡ Grade 11 General Science Pair Challenge</div>
+        <h1>Can your house survive the electricity reality check?</h1>
+        <p>
+          Work with your partner. Make smart electricity choices, inspect house problems,
+          and prepare one idea that you can apply to your Safe Watts house model.
+        </p>
+        <div class="cta no-print">
+          <a class="buttonlike primary" href="#provocation">Start the Challenge</a>
+          <a class="buttonlike secondary" href="#explore">Go to Inspection Cards</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="mini-house">
+          <div class="roof"></div>
+          <div class="house">
+            <div class="room">Kitchen</div>
+            <div class="room">Bedroom</div>
+            <div class="room">Living Area</div>
+            <div class="room">Study Area</div>
+          </div>
+          <div class="wire w1"></div>
+          <div class="wire w2"></div>
+          <div class="wire w3"></div>
+          <div class="icon-bubble b1">🔌</div>
+          <div class="icon-bubble b2">💡</div>
+          <div class="icon-bubble b3">💧</div>
+          <div class="icon-bubble b4">🌬️</div>
+        </div>
+      </div>
+    </div>
+
+    <section id="steps">
+      <div class="section-title">
+        <div>
+          <h2>Your Mission</h2>
+          <p>Work in pairs. Make choices, inspect problems, and prepare one realistic fix for your house model.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="panel span-4">
+          <h3>1. Spend Your Tokens</h3>
+          <p class="tiny">Choose how many of each electrical need or want your pair will power during a limited-electricity situation.</p>
+        </div>
+        <div class="panel span-4">
+          <h3>2. Inspect the House</h3>
+          <p class="tiny">Check each situation and decide if it shows danger, waste, both, or a safe setup.</p>
+        </div>
+        <div class="panel span-4">
+          <h3>3. Prepare Your Fix</h3>
+          <p class="tiny">Choose one inspection card, then modify or improve it for your own house model.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="provocation">
+      <div class="section-title">
+        <div>
+          <h2>Provocation: Blackout Budget</h2>
+          <p>
+            Your pair only has 10 power tokens for the next 24 hours. Add electrical needs and wants to your cart,
+            but stay within the limit.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="panel span-12 challenge-card">
+          <div>
+            <h3 id="challengeTitle">Challenge Card: Normal Day</h3>
+            <p id="challengeText">
+              Everyone in the house wants to use electricity at the same time. Decide which needs matter most.
+            </p>
+          </div>
+          <div class="no-print">
+            <button class="primary" onclick="drawChallenge()">Draw a Challenge Card</button>
+          </div>
+        </div>
+
+        <div class="panel span-5">
+          <p class="big-question">What will your pair power first?</p>
+          <div class="divider"></div>
+          <p class="tiny">
+            Use the plus and minus buttons. You may choose more than one of the same item,
+            but your total must stay within 10 tokens. Choose carefully: some items are useful, some are tempting.
+          </p>
+
+          <div class="tokens">
+            <div>
+              <div class="tiny">Tokens left</div>
+              <div class="token-number" id="tokensLeft">10</div>
+            </div>
+            <div style="flex:1">
+              <div class="meter"><div id="tokenMeter"></div></div>
+              <div class="tiny" id="tokenStatus">0 of 10 tokens used</div>
+            </div>
+          </div>
+
+          <div class="cart-summary">
+            <div class="summary-box">
+              <span class="tiny">Items in cart</span>
+              <strong id="itemsCount">0</strong>
+            </div>
+            <div class="summary-box">
+              <span class="tiny">Total tokens</span>
+              <strong id="totalTokens">0</strong>
+            </div>
+            <div class="summary-box">
+              <span class="tiny">Limit</span>
+              <strong>10</strong>
+            </div>
+          </div>
+
+          <div id="budgetWarning" class="warning">Over budget. Remove something or decide what your pair will sacrifice.</div>
+          <div id="budgetSuccess" class="success">Within budget. Be ready to defend your choices.</div>
+
+          <div class="divider"></div>
+          <h3>Your Cart</h3>
+          <ul class="cart-list" id="cartList">
+            <li><span>No items yet</span><span>0 tokens</span></li>
+          </ul>
+          <button class="secondary no-print" onclick="resetCart()">Reset Cart</button>
+        </div>
+
+        <div class="panel span-7">
+          <div class="appliance-grid" id="applianceGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="engage">
+      <div class="section-title">
+        <div>
+          <h2>Engage: Pair Checkpoint</h2>
+          <p>
+            After the Blackout Budget, discuss your choices with your partner. Type your answers before moving to the inspection cards.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="panel span-4">
+          <h3>Checkpoint 1</h3>
+          <p class="big-question" style="font-size:27px">What electrical need did your pair refuse to sacrifice?</p>
+          <textarea id="engageAnswer1" placeholder="Type your answer here..."></textarea>
+        </div>
+        <div class="panel span-4">
+          <h3>Checkpoint 2</h3>
+          <p class="big-question" style="font-size:27px">What electrical need did your pair sacrifice first?</p>
+          <textarea id="engageAnswer2" placeholder="Type your answer here..."></textarea>
+        </div>
+        <div class="panel span-4">
+          <h3>Checkpoint 3</h3>
+          <p class="big-question" style="font-size:27px">What does this reveal about how people use electricity?</p>
+          <textarea id="engageAnswer3" placeholder="Type your answer here..."></textarea>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:16px;">
+        <h3>Pair Summary</h3>
+        <p class="tiny">Complete this sentence based on your discussion.</p>
+        <textarea id="engageSummary" placeholder="Our pair realized that electricity should be used..."></textarea>
+      </div>
+    </section>
+
+    <section id="explore">
+      <div class="section-title">
+        <div>
+          <h2>Explore: Would This Pass Inspection?</h2>
+          <p>
+            Act as home safety inspectors. Classify each situation as danger, waste, both, or safe.
+          </p>
+        </div>
+      </div>
+
+      <div class="card-set" id="scenarioCards"></div>
+    </section>
+
+    <section id="output">
+      <div class="section-title">
+        <div>
+          <h2>Your Pair Output: Reality Check Card</h2>
+          <p>
+            Choose one inspection card from the Explore part. Then improve or modify the situation so it can fit your own house model.
+          </p>
+        </div>
+        <button class="primary no-print" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+
+      <div class="panel">
+        <h3>How to complete this card</h3>
+        <ol class="instruction-list">
+          <li>Choose one situation from the Explore inspection cards.</li>
+          <li>You may use the problem as written, or modify it to match your house model.</li>
+          <li>Create your own smart fix. Do not just copy the feedback.</li>
+        </ol>
+      </div>
+
+      <div class="panel" style="margin-top:16px;">
+        <div class="form-grid no-print">
+          <div>
+            <label>Section</label>
+            <select id="sectionName">
+              <option value="">Choose your section</option>
+              <option>Rockefeller</option>
+              <option>Keller</option>
+              <option>Mandela</option>
+              <option>Aristotle</option>
+              <option>Socrates</option>
+            </select>
+          </div>
+          <div>
+            <label>Pair Name</label>
+            <input id="pairName" placeholder="Example: Power Patrol" />
+          </div>
+          <div class="full">
+            <label>Chosen Explore Card</label>
+            <select id="chosenCard" onchange="fillFromChosenCard()">
+              <option value="">Choose one inspection card</option>
+            </select>
+            <p class="tiny">After choosing a card, you may still edit the problem, type, and smart fix.</p>
+          </div>
+          <div>
+            <label>House Area</label>
+            <input id="area" placeholder="Example: Kitchen, bedroom, living room" />
+          </div>
+          <div>
+            <label>Problem Observed or Modified</label>
+            <input id="problem" placeholder="Use the chosen card or revise it for your model" />
+          </div>
+          <div>
+            <label>Type</label>
+            <select id="type">
+              <option>Danger</option>
+              <option>Waste</option>
+              <option>Both danger and waste</option>
+              <option>Safe</option>
+              <option>Needs better design</option>
+            </select>
+          </div>
+          <div>
+            <label>Possible Consequence</label>
+            <input id="consequence" placeholder="Example: overheating, wasted electricity, shock risk" />
+          </div>
+          <div class="full">
+            <label>Smart Fix</label>
+            <input id="fix" placeholder="Write your own solution for the house model" />
+          </div>
+          <div class="full">
+            <button class="primary" onclick="addOutput()">Add to Reality Check Table</button>
+            <button onclick="clearOutput()">Clear Table</button>
+            <button class="secondary" onclick="saveSubmission()">Submit Pair Answers</button>
+            <div id="saveStatus" class="save-status">Submitted. Your teacher can view this through instructor access.</div>
+          </div>
+        </div>
+
+        <div class="print-area">
+          <h3 id="printTitle">Reality Check Card</h3>
+          <table id="outputTable">
+            <thead>
+              <tr>
+                <th>Chosen Card</th>
+                <th>House Area</th>
+                <th>Problem</th>
+                <th>Type</th>
+                <th>Possible Consequence</th>
+                <th>Smart Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Outlet Beside the Sink</td>
+                <td>Kitchen</td>
+                <td>Outlet placed close to wet area</td>
+                <td>Danger</td>
+                <td>Possible shock/electrocution risk</td>
+                <td>Place outlets away from wet areas and add warning labels</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="tiny">
+          Safety reminder: This activity is for planning and modeling only. Do not use real household electricity in your house model.
+        </p>
+      </div>
+    </section>
+
+    <section id="teacher" class="teacher-shell">
+      <button class="teacher-mini-toggle no-print" onclick="toggleTeacherPanel()">Instructor access</button>
+
+      <div id="teacherPanel" class="teacher-panel">
+        <div class="panel">
+          <div class="section-title">
+            <div>
+              <h2>Instructor Access</h2>
+              <p>
+                Enter the teacher code to view pair submissions saved on this browser.
+              </p>
+            </div>
+          </div>
+
+          <p class="tiny">
+            Teacher note: Since this is an offline file, answers are saved only on the browser/device where students submit.
+            The code hides the answers during normal student use, but it is not a secure online login.
+          </p>
+
+          <div class="teacher-lock no-print">
+            <div>
+              <label>Teacher Code</label>
+              <input id="teacherCode" type="password" placeholder="Enter teacher code" />
+            </div>
+            <button class="primary" onclick="unlockTeacherView()">Open</button>
+          </div>
+
+          <div id="teacherDashboard" class="teacher-dashboard">
+            <div class="form-grid no-print">
+              <div>
+                <label>Filter by Section</label>
+                <select id="teacherFilter" onchange="renderTeacherSubmissions()">
+                  <option value="All">All Sections</option>
+                  <option>Rockefeller</option>
+                  <option>Keller</option>
+                  <option>Mandela</option>
+                  <option>Aristotle</option>
+                  <option>Socrates</option>
+                </select>
+              </div>
+              <div>
+                <label>Actions</label>
+                <div>
+                  <button onclick="downloadCSV()">Download CSV</button>
+                  <button class="danger-btn" onclick="clearSubmissions()">Clear Saved Answers</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <h3 id="submissionCount">Submitted Answers</h3>
+            <div id="submissionsList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">Safe Watts House Challenge • Grade 11 General Science Pair Activity</p>
+  </main>
+
+  <script>
+    const appliances = [
+      {name:"Wi-Fi / Router", emoji:"📶", cost:2, tag:"communication", qty:0},
+      {name:"Electric Fan", emoji:"🌬️", cost:2, tag:"comfort", qty:0},
+      {name:"Lights", emoji:"💡", cost:2, tag:"safety", qty:0},
+      {name:"Refrigerator", emoji:"🧊", cost:3, tag:"food safety", qty:0},
+      {name:"Phone Charging", emoji:"📱", cost:1, tag:"emergency/social", qty:0},
+      {name:"Rice Cooker", emoji:"🍚", cost:3, tag:"food", qty:0},
+      {name:"TV / Netflix", emoji:"📺", cost:2, tag:"entertainment", qty:0},
+      {name:"Laptop / Computer", emoji:"💻", cost:2, tag:"work/school", qty:0},
+      {name:"Air Conditioner", emoji:"❄️", cost:5, tag:"comfort", qty:0},
+      {name:"Gaming Console", emoji:"🎮", cost:3, tag:"entertainment", qty:0},
+      {name:"Bluetooth Speaker", emoji:"🔊", cost:1, tag:"music", qty:0},
+      {name:"Tablet Charging", emoji:"📲", cost:1, tag:"school", qty:0},
+      {name:"Microwave Oven", emoji:"♨️", cost:3, tag:"quick food", qty:0},
+      {name:"Water Dispenser", emoji:"🚰", cost:2, tag:"drink/comfort", qty:0},
+      {name:"Electric Kettle", emoji:"☕", cost:2, tag:"drink/food", qty:0},
+      {name:"Clothes Iron", emoji:"👕", cost:3, tag:"school prep", qty:0},
+      {name:"Security Light / CCTV", emoji:"📹", cost:2, tag:"safety", qty:0}
+    ];
+
+    const challenges = [
+      {
+        title:"Challenge Card: Stormy Night",
+        text:"Heavy rain causes wet floors and possible leaks. Think about safety, not only comfort."
+      },
+      {
+        title:"Challenge Card: Online Class Day",
+        text:"Two people need internet and devices for school or work, but your power limit remains the same."
+      },
+      {
+        title:"Challenge Card: Family of Five",
+        text:"Many people need electricity at the same time. Avoid overloading while keeping important needs powered."
+      },
+      {
+        title:"Challenge Card: Hot Afternoon",
+        text:"The house is very warm. Balance comfort with energy conservation."
+      },
+      {
+        title:"Challenge Card: Food Storage Problem",
+        text:"Food may spoil if the refrigerator is not powered. Decide what becomes essential."
+      },
+      {
+        title:"Challenge Card: Low Budget Month",
+        text:"The family wants to lower the electric bill. Choose only what gives the most useful value."
+      }
+    ];
+
+    const scenarios = [
+      {
+        emoji:"🔌",
+        title:"Extension Tower",
+        desc:"A family plugs an extension cord into another extension cord so they can use more appliances.",
+        answer:"Danger",
+        area:"Living room",
+        consequence:"Possible overloading, overheating, or fire risk",
+        feedback:"Main issue: Danger. This can lead to overloading and overheating. A safer design uses proper outlet planning and avoids daisy-chaining extension cords."
+      },
+      {
+        emoji:"💧",
+        title:"Outlet Beside the Sink",
+        desc:"A kitchen outlet is placed very close to the sink where water can splash.",
+        answer:"Danger",
+        area:"Kitchen",
+        consequence:"Possible shock or electrocution risk",
+        feedback:"Main issue: Danger. Damp electrical conditions increase shock risk. Outlets should be placed away from wet areas."
+      },
+      {
+        emoji:"💡",
+        title:"Empty Room, Full Power",
+        desc:"The lights and fan stay on even when nobody is inside the room.",
+        answer:"Waste",
+        area:"Bedroom",
+        consequence:"Electricity is consumed even when it is not needed",
+        feedback:"Main issue: Waste. Energy is being consumed without need. A switch-off habit or room zoning can reduce energy wastage."
+      },
+      {
+        emoji:"🧯",
+        title:"Warm Outlet",
+        desc:"An outlet feels warm after many devices are used from the same area.",
+        answer:"Danger",
+        area:"Living room",
+        consequence:"Possible sign of overloading or faulty wiring",
+        feedback:"Main issue: Danger. Warm outlets can be a warning sign of overloading or faulty wiring. The load should be reduced and the outlet should be checked."
+      },
+      {
+        emoji:"📱",
+        title:"Broken Charger Still Used",
+        desc:"A phone charger has cracked insulation, but it still charges the phone.",
+        answer:"Danger",
+        area:"Bedroom",
+        consequence:"Possible shock, short circuit, or fire risk",
+        feedback:"Main issue: Danger. Damaged insulation can expose wires and increase the risk of shock, short circuit, or fire."
+      },
+      {
+        emoji:"🌞",
+        title:"Curtains Closed at Noon",
+        desc:"The room has windows and enough daylight outside, but the curtains stay closed and the lights remain on.",
+        answer:"Waste",
+        area:"Living room",
+        consequence:"Electricity is wasted even when natural light is available",
+        feedback:"Main issue: Waste. Electricity is being used even when natural light is available. Opening curtains or using daylight can reduce energy consumption."
+      },
+      {
+        emoji:"❄️",
+        title:"Aircon + Open Window",
+        desc:"The air conditioner is running while the window is open because the room still feels warm.",
+        answer:"Waste",
+        area:"Bedroom",
+        consequence:"The appliance works harder and consumes more electricity",
+        feedback:"Main issue: Waste. Cool air escapes, so the appliance works harder and consumes more electricity."
+      },
+      {
+        emoji:"🎮",
+        title:"Gaming Corner Overload",
+        desc:"A console, TV, speaker, phone chargers, and fan are all connected to one extension cord.",
+        answer:"Both",
+        area:"Entertainment area",
+        consequence:"Possible overloading and unnecessary energy consumption",
+        feedback:"Main issue: Both. It is a safety risk because of possible overloading, and it can also waste energy when devices stay plugged in or running unnecessarily."
+      },
+      {
+        emoji:"🛏️",
+        title:"Overnight Charging Zone",
+        desc:"Several phones and tablets are left charging overnight on a bed using one extension cord.",
+        answer:"Both",
+        area:"Bedroom",
+        consequence:"Possible overheating, fire risk, and wasted energy",
+        feedback:"Main issue: Both. It can become a fire or overheating risk, and it may waste energy when devices remain plugged in after charging."
+      },
+      {
+        emoji:"🏠",
+        title:"Smart Switch Labels",
+        desc:"Each room has a labeled switch, LED lights, and a reminder to turn off lights before leaving.",
+        answer:"Safe",
+        area:"Whole house",
+        consequence:"Promotes safer and more efficient electricity use",
+        feedback:"Main issue: Safe. The design supports safe use and energy conservation through clear controls and efficient lighting."
+      },
+      {
+        emoji:"🌬️",
+        title:"Natural Ventilation Plan",
+        desc:"The house has windows placed across from each other so air can flow through the room during the day.",
+        answer:"Safe",
+        area:"Living room",
+        consequence:"Reduces unnecessary use of electric fans or air conditioning",
+        feedback:"Main issue: Safe. Good ventilation can reduce the need for electric fans or air conditioning."
+      },
+      {
+        emoji:"🍚",
+        title:"Kitchen Power Rush",
+        desc:"Rice cooker, microwave, kettle, and water dispenser are used from the same outlet during breakfast.",
+        answer:"Both",
+        area:"Kitchen",
+        consequence:"Possible overloading and high energy consumption",
+        feedback:"Main issue: Both. Several high-power appliances on one outlet can create a safety risk, and careless use may increase energy consumption."
+      }
+    ];
+
+    function renderAppliances(){
+      const grid = document.getElementById("applianceGrid");
+      grid.innerHTML = "";
+      appliances.forEach((a, i) => {
+        const card = document.createElement("div");
+        card.className = "appliance";
+        if(a.qty > 0) card.classList.add("active");
+        card.innerHTML = `
+          <span class="emoji">${a.emoji}</span>
+          <strong>${a.name}</strong>
+          <span class="tag">${a.tag}</span>
+          <span class="cost">${a.cost} token${a.cost > 1 ? "s" : ""} each</span>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty(${i}, -1)">−</button>
+            <span class="qty" id="qty${i}">${a.qty}</span>
+            <button class="qty-btn primary" onclick="changeQty(${i}, 1)">+</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      updateBudget();
+    }
+
+    function changeQty(index, delta){
+      appliances[index].qty = Math.max(0, appliances[index].qty + delta);
+      renderAppliances();
+    }
+
+    function resetCart(){
+      appliances.forEach(a => a.qty = 0);
+      renderAppliances();
+    }
+
+    function updateBudget(){
+      const used = appliances.reduce((sum, a) => sum + (a.cost * a.qty), 0);
+      const itemCount = appliances.reduce((sum, a) => sum + a.qty, 0);
+      const left = 10 - used;
+
+      document.getElementById("tokensLeft").textContent = left;
+      document.getElementById("tokenStatus").textContent = `${used} of 10 tokens used`;
+      document.getElementById("tokenMeter").style.width = `${Math.min(100, used * 10)}%`;
+      document.getElementById("itemsCount").textContent = itemCount;
+      document.getElementById("totalTokens").textContent = used;
+
+      const warning = document.getElementById("budgetWarning");
+      const success = document.getElementById("budgetSuccess");
+      warning.style.display = used > 10 ? "block" : "none";
+      success.style.display = used > 0 && used <= 10 ? "block" : "none";
+
+      const cart = document.getElementById("cartList");
+      const chosen = appliances.filter(a => a.qty > 0);
+      if(chosen.length === 0){
+        cart.innerHTML = `<li><span>No items yet</span><span>0 tokens</span></li>`;
+      } else {
+        cart.innerHTML = chosen.map(a => `
+          <li>
+            <span>${a.emoji} ${a.name} × ${a.qty}</span>
+            <span>${a.cost * a.qty} tokens</span>
+          </li>
+        `).join("");
+      }
+    }
+
+    function drawChallenge(){
+      const c = challenges[Math.floor(Math.random() * challenges.length)];
+      document.getElementById("challengeTitle").textContent = c.title;
+      document.getElementById("challengeText").textContent = c.text;
+    }
+
+    function renderScenarios(){
+      const wrap = document.getElementById("scenarioCards");
+      wrap.innerHTML = "";
+      scenarios.forEach((s, i) => {
+        const card = document.createElement("div");
+        card.className = "scenario";
+        card.innerHTML = `
+          <div class="scene-emoji">${s.emoji}</div>
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+          <div class="choices">
+            <button class="choice" onclick="checkScenario(${i}, 'Danger', this)">Danger</button>
+            <button class="choice" onclick="checkScenario(${i}, 'Waste', this)">Waste</button>
+            <button class="choice" onclick="checkScenario(${i}, 'Both', this)">Both</button>
+            <button class="choice" onclick="checkScenario(${i}, 'Safe', this)">Safe</button>
+          </div>
+          <div class="feedback" id="feedback${i}"></div>
+        `;
+        wrap.appendChild(card);
+      });
+    }
+
+    function checkScenario(index, choice, btn){
+      const card = btn.closest(".scenario");
+      card.querySelectorAll(".choice").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+
+      const scenario = scenarios[index];
+      const fb = document.getElementById(`feedback${index}`);
+      fb.style.display = "block";
+      const correct = choice === scenario.answer;
+      fb.className = correct ? "feedback" : "feedback miss";
+      fb.textContent = correct ? `Correct. ${scenario.feedback}` : `Almost. Best answer: ${scenario.answer}. ${scenario.feedback}`;
+    }
+
+    function renderChosenCardOptions(){
+      const select = document.getElementById("chosenCard");
+      scenarios.forEach((s, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = s.title;
+        select.appendChild(option);
+      });
+    }
+
+    function normalizeType(answer){
+      if(answer === "Both") return "Both danger and waste";
+      return answer;
+    }
+
+    function fillFromChosenCard(){
+      const value = document.getElementById("chosenCard").value;
+      if(value === "") return;
+
+      const scenario = scenarios[Number(value)];
+      document.getElementById("area").value = scenario.area || "";
+      document.getElementById("problem").value = scenario.desc || "";
+      document.getElementById("type").value = normalizeType(scenario.answer);
+      document.getElementById("consequence").value = scenario.consequence || "";
+      document.getElementById("fix").value = "";
+    }
+
+    function addOutput(){
+      const chosenSelect = document.getElementById("chosenCard");
+      const chosenCard = chosenSelect.value === "" ? "Student-created situation" : chosenSelect.options[chosenSelect.selectedIndex].text;
+      const sectionName = document.getElementById("sectionName").value.trim();
+      const pairName = document.getElementById("pairName").value.trim();
+      const area = document.getElementById("area").value.trim() || "Not specified";
+      const problem = document.getElementById("problem").value.trim() || "Not specified";
+      const type = document.getElementById("type").value;
+      const consequence = document.getElementById("consequence").value.trim() || "Not specified";
+      const fix = document.getElementById("fix").value.trim() || "Not specified";
+
+      if(pairName || sectionName){
+        const label = [sectionName, pairName].filter(Boolean).join(" - ");
+        document.getElementById("printTitle").textContent = `Reality Check Card: ${label}`;
+      }
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${escapeHTML(chosenCard)}</td>
+        <td>${escapeHTML(area)}</td>
+        <td>${escapeHTML(problem)}</td>
+        <td>${escapeHTML(type)}</td>
+        <td>${escapeHTML(consequence)}</td>
+        <td>${escapeHTML(fix)}</td>
+      `;
+      document.querySelector("#outputTable tbody").appendChild(tr);
+
+      ["area","problem","consequence","fix"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("chosenCard").value = "";
+    }
+
+    function clearOutput(){
+      document.querySelector("#outputTable tbody").innerHTML = "";
+      document.getElementById("printTitle").textContent = "Reality Check Card";
+    }
+
+    function escapeHTML(str){
+      return String(str).replace(/[&<>"']/g, m => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[m]));
+    }
+
+    function getCartSummary(){
+      const chosen = appliances.filter(a => a.qty > 0);
+      if(chosen.length === 0) return "No items selected";
+      return chosen.map(a => `${a.name} x ${a.qty} (${a.cost * a.qty} tokens)`).join("; ");
+    }
+
+    function getTableRows(){
+      const rows = [...document.querySelectorAll("#outputTable tbody tr")];
+      return rows.map(row => {
+        const cells = [...row.querySelectorAll("td")].map(td => td.textContent.trim());
+        return {
+          chosenCard: cells[0] || "",
+          area: cells[1] || "",
+          problem: cells[2] || "",
+          type: cells[3] || "",
+          consequence: cells[4] || "",
+          fix: cells[5] || ""
+        };
+      });
+    }
+
+    function saveSubmission(){
+      const sectionName = document.getElementById("sectionName").value.trim();
+      const pairName = document.getElementById("pairName").value.trim();
+
+      if(!sectionName){
+        alert("Please choose your section before submitting.");
+        return;
+      }
+
+      if(!pairName){
+        alert("Please type your pair name before submitting.");
+        return;
+      }
+
+      const used = appliances.reduce((sum, a) => sum + (a.cost * a.qty), 0);
+      const answers = {
+        id: Date.now(),
+        date: new Date().toLocaleString(),
+        section: sectionName,
+        pair: pairName,
+        tokensUsed: used,
+        tokensLeft: 10 - used,
+        cart: getCartSummary(),
+        checkpoint1: document.getElementById("engageAnswer1").value.trim(),
+        checkpoint2: document.getElementById("engageAnswer2").value.trim(),
+        checkpoint3: document.getElementById("engageAnswer3").value.trim(),
+        summary: document.getElementById("engageSummary").value.trim(),
+        realityRows: getTableRows()
+      };
+
+      const saved = JSON.parse(localStorage.getItem("safeWattsSubmissions") || "[]");
+      saved.push(answers);
+      localStorage.setItem("safeWattsSubmissions", JSON.stringify(saved));
+
+      const status = document.getElementById("saveStatus");
+      status.style.display = "block";
+      status.textContent = "Submitted. Your teacher can view this through instructor access.";
+      setTimeout(() => { status.style.display = "none"; }, 4000);
+    }
+
+    function toggleTeacherPanel(){
+      const panel = document.getElementById("teacherPanel");
+      panel.classList.toggle("open");
+    }
+
+    function unlockTeacherView(){
+      const code = document.getElementById("teacherCode").value.trim();
+      if(code !== "AIRONMAN"){
+        alert("Incorrect teacher code.");
+        return;
+      }
+      document.getElementById("teacherDashboard").style.display = "block";
+      renderTeacherSubmissions();
+    }
+
+    function renderTeacherSubmissions(){
+      const list = document.getElementById("submissionsList");
+      const count = document.getElementById("submissionCount");
+      const filter = document.getElementById("teacherFilter") ? document.getElementById("teacherFilter").value : "All";
+      const saved = JSON.parse(localStorage.getItem("safeWattsSubmissions") || "[]");
+      const filtered = filter === "All" ? saved : saved.filter(s => s.section === filter);
+
+      count.textContent = `Submitted Answers (${filtered.length})`;
+
+      if(filtered.length === 0){
+        list.innerHTML = `<p class="tiny">No submitted answers found for this filter.</p>`;
+        return;
+      }
+
+      list.innerHTML = filtered.slice().reverse().map(s => {
+        const rows = (s.realityRows || []).map(r => `
+          <tr>
+            <td>${escapeHTML(r.chosenCard || "")}</td>
+            <td>${escapeHTML(r.area || "")}</td>
+            <td>${escapeHTML(r.problem || "")}</td>
+            <td>${escapeHTML(r.type || "")}</td>
+            <td>${escapeHTML(r.consequence || "")}</td>
+            <td>${escapeHTML(r.fix || "")}</td>
+          </tr>
+        `).join("");
+
+        return `
+          <div class="submission-card">
+            <h4>${escapeHTML(s.section)} - ${escapeHTML(s.pair)}</h4>
+            <div class="submission-meta">Submitted: ${escapeHTML(s.date)} | Tokens used: ${s.tokensUsed} | Tokens left: ${s.tokensLeft}</div>
+            <div class="answer-block"><strong>Cart:</strong> ${escapeHTML(s.cart || "")}</div>
+            <div class="answer-block"><strong>Checkpoint 1:</strong> ${escapeHTML(s.checkpoint1 || "")}</div>
+            <div class="answer-block"><strong>Checkpoint 2:</strong> ${escapeHTML(s.checkpoint2 || "")}</div>
+            <div class="answer-block"><strong>Checkpoint 3:</strong> ${escapeHTML(s.checkpoint3 || "")}</div>
+            <div class="answer-block"><strong>Pair Summary:</strong> ${escapeHTML(s.summary || "")}</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Chosen Card</th>
+                  <th>House Area</th>
+                  <th>Problem</th>
+                  <th>Type</th>
+                  <th>Possible Consequence</th>
+                  <th>Smart Fix</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function downloadCSV(){
+      const saved = JSON.parse(localStorage.getItem("safeWattsSubmissions") || "[]");
+      if(saved.length === 0){
+        alert("No saved answers to download.");
+        return;
+      }
+
+      const headers = [
+        "Date","Section","Pair","Tokens Used","Tokens Left","Cart",
+        "Checkpoint 1","Checkpoint 2","Checkpoint 3","Pair Summary",
+        "Reality Check Rows"
+      ];
+
+      const lines = [headers.join(",")];
+
+      saved.forEach(s => {
+        const realityRows = (s.realityRows || []).map(r =>
+          `${r.chosenCard} | ${r.area} | ${r.problem} | ${r.type} | ${r.consequence} | ${r.fix}`
+        ).join(" / ");
+
+        const row = [
+          s.date, s.section, s.pair, s.tokensUsed, s.tokensLeft, s.cart,
+          s.checkpoint1, s.checkpoint2, s.checkpoint3, s.summary, realityRows
+        ].map(csvEscape);
+
+        lines.push(row.join(","));
+      });
+
+      const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "safe_watts_submissions.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function csvEscape(value){
+      const str = String(value ?? "");
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+
+    function clearSubmissions(){
+      if(confirm("Clear all saved student answers from this browser?")){
+        localStorage.removeItem("safeWattsSubmissions");
+        renderTeacherSubmissions();
+      }
+    }
+
+    renderAppliances();
+    renderScenarios();
+    renderChosenCardOptions();
+  </script>
+</body>
+</html>
